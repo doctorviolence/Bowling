@@ -1,0 +1,13 @@
+body
+{
+    width: 50%;
+    margin: auto;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #444444;
+    font-size: 9pt;
+    line-height: 25px; 
+}
+
+input[type="number"] {
+    width: 200px;
+}

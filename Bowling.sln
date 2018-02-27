@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingClient", "BowlingClient\BowlingClient.csproj", "{F5FBF57E-D1D9-4832-80CE-5B5B5773D1BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7ADA5366-4479-41CE-9E03-AA9DB2AB493C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingApi", "BowlingApi\BowlingApi.csproj", "{1EA2A19C-7FB0-4ACF-8A42-E3494DA1E3D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5FBF57E-D1D9-4832-80CE-5B5B5773D1BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FBF57E-D1D9-4832-80CE-5B5B5773D1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FBF57E-D1D9-4832-80CE-5B5B5773D1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FBF57E-D1D9-4832-80CE-5B5B5773D1BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ADA5366-4479-41CE-9E03-AA9DB2AB493C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ADA5366-4479-41CE-9E03-AA9DB2AB493C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ADA5366-4479-41CE-9E03-AA9DB2AB493C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ADA5366-4479-41CE-9E03-AA9DB2AB493C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA2A19C-7FB0-4ACF-8A42-E3494DA1E3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA2A19C-7FB0-4ACF-8A42-E3494DA1E3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA2A19C-7FB0-4ACF-8A42-E3494DA1E3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA2A19C-7FB0-4ACF-8A42-E3494DA1E3D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
