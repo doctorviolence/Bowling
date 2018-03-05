@@ -26,8 +26,6 @@ namespace BowlingClient
             options.DefaultFileNames.Add("BowlingClient.html");
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            
-            app.Run(async (context) => { await context.Response.WriteAsync("Error 404 - Not found. Were you looking for /bowlingclient.html?"); });
         }
     }
 }

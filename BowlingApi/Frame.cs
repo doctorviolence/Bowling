@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace BowlingApi
 {
+    [DataContract]
     public class Frame
     {
-        public int FirstRoll { get; private set; }
-        public int SecondRoll { get; private set; }
-        public int BonusRoll { get; private set; }
+        [JsonProperty("first")] public int FirstRoll { get; private set; }
+        [JsonProperty("second")] public int SecondRoll { get; private set; }
+        [JsonProperty("bonus")] public int BonusRoll { get; private set; }
+
+        public Frame()
+        {
+        }
 
         public Frame(int firstRoll, int secondRoll)
         {
@@ -51,7 +58,7 @@ namespace BowlingApi
         {
             int score = 0;
             if (strikeFlag && !spareFlag)
-                return score += FirstRoll + SecondRoll + BonusRoll;
+                return score += BonusRoll + BonusRoll;
             else if (spareFlag && !strikeFlag)
                 return score += FirstRoll + SecondRoll + BonusRoll;
             else

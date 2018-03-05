@@ -8,92 +8,58 @@ using Newtonsoft.Json;
 using System.Text;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using Microsoft.AspNetCore.Cors;
+using Newtonsoft.Json.Linq;
 
 namespace BowlingApi.Controllers
 {
     [Route("api/bowling")]
+    //[EnableCors("bowling")]
     public class BowlingController : Controller
     {
-
         private Game _game;
-        private int _i = 0;
 
         public BowlingController()
         {
             _game = new Game();
         }
 
-        [Route("GetScore")]
-        [HttpGet]
-        public JsonResult GetScore(IEnumerable<Frame> frames)
+        // WORKS
+        [Route("score")]
+        [HttpPost]
+        public JsonResult Score(string json)
         {
+            Frame[] _frames = JsonConvert.DeserializeObject<List<Frame>>(json).ToArray();
             int score = 0;
-            foreach (Frame f in frames)
+            foreach (Frame f in _frames)
             {
-                score += _game.CalculateTotalScore();
+                int first = f.FirstRoll;
+                int second = f.SecondRoll;
+                int bonus = f.BonusRoll;
+                _game.Roll(first, second, bonus);
             }
-            return Json(new { Value = "score" + score });
+
+            score += _game.CalculateTotalScore();
+            return Json(new {score});
         }
 
-        [Route("SubmitScore")]
+        // WORKS
+        [Route("submit")]
         [HttpPost]
-        public JsonResult SubmitScore(string frames)
+        public JsonResult SubmitScore(string json)
         {
-            Frame[] framesInArray = Deserialize<Frame[]>(frames);
+            ListOfFrames _frames = JsonConvert.DeserializeObject<ListOfFrames>(json);
             int score = 0;
-            foreach (Frame f in framesInArray)
+            foreach (Frame f in _frames.Frames)
             {
-                int first = 0;
-                int second = 0;
-                first = f.FirstRoll;
-                second = f.SecondRoll;
-                _game.Roll(first, second);
-                score += _game.CalculateTotalScore();
+                int first = f.FirstRoll;
+                int second = f.SecondRoll;
+                int bonus = f.BonusRoll;
+                _game.Roll(first, second, bonus);
             }
-            return Json(new { Value = "score" + score }); // Hmm?
+
+            score += _game.CalculateTotalScore();
+            return Json(new {score});
         }
-
-        private Frame Deserialize<Frame>(string json)
-        {
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(json)))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(Frame));
-                Frame f = (Frame)serializer.ReadObject(ms);
-                return (Frame)serializer.ReadObject(ms);
-            }
-        }
-
-        /*
-        [Route("PostFrame")]
-        [HttpPost]
-        public ActionResult SubmitFrame(IEnumerable<Frame> f)
-        {
-            Frame frame;
-            int first = f.FirstRoll;
-            int second = f.SecondRoll;
-            frame = new Frame(first, second);
-            game.frames[i] = frame;
-            i++;
-            return Json(new { msg = "score" + frame.GetFrameScore() });
-        }*/
-
-        /* Note: not yet tested
-        [Route("frames")]
-        [HttpPost]
-        public IActionResult HandleRequest(HttpRequest request)
-        {
-            Frame frame = JsonConvert.DeserializeObject<Frame>(request.ToString()); // toString vs body?
-            int firstRoll = frame.FirstRoll;
-            int secondRoll = frame.SecondRoll;
-            int score = 0;
-            foreach (Frame f in game.frames)
-            {
-                game.Roll(firstRoll, secondRoll);
-                //game.frames[i] = new Frame(firstRoll, secondRoll);
-                score += game.CalculateTotalScore();
-                i++;
-            }
-            return Json("score" + score);
-        }*/
     }
 }

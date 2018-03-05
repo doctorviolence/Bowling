@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="bowling-application">
+<head>
+    <title>Bowling Application - Apsis</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+
+<body>
+<div ng-controller="BowlingController  as controller">
+    <span ng-repeat="frame in controller.frames track by $index" class="frame"></span>
+    <h4>Welcome to the bowling game of your life. Please insert your rolls below, and hit the button to post the
+        frame(s)
+        to the server.</h4>
+    <!--  Simple form -->
+    <form ng-submit="addFrame(frame)">
+        <input type="number" ng-model="frame.first" placeholder="Enter first roll" min="0" max="10"/>
+        <input type="number" ng-model="frame.second" placeholder="Enter second roll" min="0" max="10"/>
+        <!-- Change ng-if logic... -->
+        <input type="number" ng-model="frame.bonus" placeholder="Enter bonus roll" min="0" max="10" ng-if="$index == 9"/>
+        <button ng-click="addFrameToArray(frame)">Submit</button>
+    </form>
+    <!--  Controller actions -->
+    <p>Score: {{ controller.score }}</p>
+    <p>{{frames | json}}</p>
+</div>
+</body>
+</html>
