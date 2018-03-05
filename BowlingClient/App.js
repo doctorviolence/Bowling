@@ -12,10 +12,10 @@ app.controller('BowlingController', ['$scope', '$http', '$log', function ($scope
             url: 'http://localhost:5000/api/bowling/submit',
             dataType: 'json',
             method: 'POST',
-            "frames": this.frames//,
-            //headers: {
-            //    "Content-Type": "application/json"
-            //}
+            "frames": JSON.stringify(this.frames),
+            headers: {
+                "Content-Type": "text/plain"
+            }
         }).then(function (success) {
             $scope.score = success.data.score;
         }, function (error) {
